@@ -5,7 +5,11 @@ defmodule PingPongTracker.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", PingPongTracker do
+  scope "/slack", PingPongTracker do
     pipe_through :api
+
+    get "/", SlackIntegrationController, :index 
+
+    post "/", SlackIntegrationController, :receive
   end
 end
